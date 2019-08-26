@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class DroneMovement : MonoBehaviour
 {
+    [SerializeField] private float yPos = 5;
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed;
 
@@ -20,15 +21,16 @@ public class DroneMovement : MonoBehaviour
         float v = Input.GetAxis("Vertical");
 
         float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
 
         Vector3 movementH = transform.forward * v * Time.deltaTime * movementSpeed;
         Vector3 movementV = transform.right * h * Time.deltaTime * movementSpeed;
 
         Vector3 movement = movementH + movementV;
 
-        Vector3 rotation = new Vector3(0f, mouseX, 0f) * rotationSpeed * Time.deltaTime;
+        Vector3 rotation = new Vector3(-mouseY, mouseX, 0f) * rotationSpeed * Time.deltaTime;
 
-        transform.position += movement;
+        transform.position += new Vector3(movement.x, 0f, movement.z);
         transform.eulerAngles += rotation;
     }
 }
