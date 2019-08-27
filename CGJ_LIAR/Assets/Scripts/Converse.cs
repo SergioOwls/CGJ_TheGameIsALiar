@@ -19,7 +19,7 @@ public class Converse : MonoBehaviour
 
         text = GetComponent<Text>();
         text.enabled = false;
-        this.Text("A TEST");
+        this.Text("A TESTTTTTTTT");
     }
 
     public void Text(string sentence)                       { StartCoroutine(this.TextBackEnd(sentence)); }
