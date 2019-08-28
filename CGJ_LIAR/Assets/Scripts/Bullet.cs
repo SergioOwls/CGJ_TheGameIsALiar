@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParticleTest : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
     private void OnParticleCollision(GameObject other)
     {
