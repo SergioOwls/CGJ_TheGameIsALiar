@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            // Later implement Blood Particle CAP
+            // Later implement Blood Particle CAP   
             foreach (ParticleSystem ps in blood)
             {
                 RaycastHit rayData;
