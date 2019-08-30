@@ -109,9 +109,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5637033dda528024299cc329dc628f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controlTower: {fileID: 6793237739262311281, guid: 6daca696568cc644f9aa0ebea30a4476,
-    type: 3}
+  controlTower: {fileID: 0}
   poof: {fileID: 5719518239157702321, guid: 9743cc01c25710241b23a26f6718ebb1, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 2bd97f0331414264299321298f706c6c, type: 3}
+  - {fileID: 21300000, guid: 9f14ca37fe9e2bf429709cd6fd3ddba6, type: 3}
 --- !u!114 &9122632043582982881
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,22 +6,31 @@ public class Bullet : MonoBehaviour
 {
     public ParticleSystem[] blood;
 
-    private void OnParticleCollision(GameObject other)
+    private void OnParticleCollision(GameObject o)
     {
-        if (other.CompareTag("Enemy"))
-        {
-            if (other.GetComponent<Enemy>().getIsHit())
-                return;
 
-            other.GetComponent<Enemy>().hit();
+        if (o.CompareTag("Enemy"))
+        {
+            if (o.GetComponent<Enemy>().getIsHit())
+                return;
+        
+          o.GetComponent<Enemy>().Hit();
             
             foreach (ParticleSystem ps in blood)
             {
                 RaycastHit rayData;
                 Physics.Raycast(transform.position, transform.forward, out rayData);
-
-                Instantiate(ps, other.transform.position, Quaternion.LookRotation(rayData.normal), other.transform);
+        
+                Instantiate(ps, o.transform.position, Quaternion.LookRotation(rayData.normal), o.transform);
             }
+        }
+
+        if (o.CompareTag("Tower"))
+        {
+            if (ControlTower.tower.IsHit())
+                return;
+
+            ControlTower.tower.PlayerHit();
         }
     }
 }

@@ -14,6 +14,7 @@ public class Converse : MonoBehaviour
 
     private Text text;
     private AudioSource textSFX;
+    private bool isBusy;
 
     void Start()
     {
@@ -23,14 +24,9 @@ public class Converse : MonoBehaviour
         text = GetComponent<Text>();
         textSFX = GetComponent<AudioSource>();
 
+        isBusy = false;
         text.enabled = false;
         this.Text("According to all known laws of aviation,");
-    }
-
-    private void Update()
-    {
-        if (Input.GetButtonDown("Jump"))
-            this.Text("Bees can't fly.");
     }
 
     public void Text(string sentence)                       { StartCoroutine(this.TextBackEnd(sentence)); }
@@ -38,6 +34,8 @@ public class Converse : MonoBehaviour
 
     private IEnumerator TextBackEnd(string sentence)
     {
+        isBusy = true;
+
         text.enabled = true;
         text.text = "";
 
@@ -59,12 +57,18 @@ public class Converse : MonoBehaviour
 
         yield return new WaitForSeconds(textScreenTime);
         text.enabled = false;
-    }
 
+        isBusy = false;
+    }
 
     public IEnumerator TextBackEnd(string sentence, float iniWaitTime)
     {
         yield return new WaitForSeconds(iniWaitTime);
         this.Text(sentence);
+    }
+
+    public bool IsBusy()
+    {
+        return isBusy;
     }
 }

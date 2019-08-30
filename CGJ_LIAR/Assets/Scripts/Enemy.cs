@@ -6,28 +6,34 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public Transform controlTower; // CONTROL TOWER (Need to change for instantiations).
-
     public GameObject poof;
+    public Sprite[] sprites;
+
+
     private NavMeshAgent agent;
+    private SpriteRenderer sr;
     private bool isHit;
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        isHit = false;
+        sr = GetComponent<SpriteRenderer>();
 
+        isHit = false;
         agent.SetDestination(controlTower.position);
     }
 
-    public void hit() {
+    public void Hit() {
         StartCoroutine(Death());
     }
 
     private void Update()
     {
         if (Vector3.Distance(this.transform.position, controlTower.position) <= 3)
-            Debug.Log("triggers are garbo");
-
+        {
+            ControlTower.tower.EnemyHit();
+            Destroy(this.gameObject);
+        }
     }
 
     private IEnumerator Death()
@@ -40,6 +46,13 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(.3f);
         Destroy(this.gameObject);
+    }
+
+    public IEnumerator Swap()
+    {
+        sr.sprite = sprites[1];
+        yield return new WaitForSeconds(5);
+        sr.sprite = sprites[0];
     }
 
     public bool getIsHit()
