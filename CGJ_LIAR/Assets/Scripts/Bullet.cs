@@ -10,7 +10,11 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            // Later implement Blood Particle CAP   
+            if (other.GetComponent<Enemy>().getIsHit())
+                return;
+
+            other.GetComponent<Enemy>().hit();
+            
             foreach (ParticleSystem ps in blood)
             {
                 RaycastHit rayData;
