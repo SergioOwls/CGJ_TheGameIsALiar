@@ -14,8 +14,10 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer sr;
     private bool isHit;
 
-    private void Start()
+    public void Init(Transform towerTarget)
     {
+        controlTower = towerTarget;
+
         agent = GetComponent<NavMeshAgent>();
         sr = GetComponent<SpriteRenderer>();
 
@@ -52,7 +54,8 @@ public class Enemy : MonoBehaviour
     {
         sr.sprite = sprites[1];
         yield return new WaitForSeconds(5);
-        sr.sprite = sprites[0];
+        if (sr != null)
+            sr.sprite = sprites[0];
     }
 
     public bool getIsHit()
