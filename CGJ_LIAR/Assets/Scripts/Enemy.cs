@@ -5,33 +5,30 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform controlTower; // CONTROL TOWER (Need to change for instantiations).
     public GameObject poof;
     public Sprite[] sprites;
 
-
+    private Transform controlTower;
     private NavMeshAgent agent;
     private SpriteRenderer sr;
     private bool isHit;
 
-    public void Init(Transform towerTarget)
+    public void Init(Transform tower)
     {
-        controlTower = towerTarget;
-
-        agent = GetComponent<NavMeshAgent>();
-        sr = GetComponent<SpriteRenderer>();
-
+        controlTower = tower;
         isHit = false;
+
+        sr = GetComponent<SpriteRenderer>();
+        agent = GetComponent<NavMeshAgent>();
+
         agent.SetDestination(controlTower.position);
     }
 
-    public void Hit() {
-        StartCoroutine(Death());
-    }
+    public void Hit() { StartCoroutine(Death()); }
 
     private void Update()
     {
-        if (Vector3.Distance(this.transform.position, controlTower.position) <= 3)
+        if (Vector3.Distance(transform.position, controlTower.position) <= 3)
         {
             ControlTower.tower.EnemyHit();
             Destroy(this.gameObject);

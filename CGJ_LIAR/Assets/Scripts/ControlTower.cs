@@ -8,9 +8,13 @@ public class ControlTower : MonoBehaviour
     public static ControlTower tower;
 
     public RectTransform hp;
+    public string[] dialogueForEnemyEntry;
+    public string[] dialogueForPlayerAttack;
 
     private SpriteRenderer sprite;
     private bool isHit;
+
+    private int dialogueEnemy, dialoguePlayer;
 
     private void Awake()
     {
@@ -20,16 +24,30 @@ public class ControlTower : MonoBehaviour
 
     private void Start()
     {
+        sprite = GetComponentInChildren<SpriteRenderer>();
+
         Cursor.visible = false;
         isHit = false;
 
-        sprite = GetComponentInChildren<SpriteRenderer>();
+        dialogueEnemy = 0;
+        dialoguePlayer = 0;
+
+        Converse.say.Text("Welcome to the field.");
+        Converse.say.Text("Well... you're really in our control tower so...");
+        Converse.say.Text("Welcome to your own baby drone.");
+        Converse.say.Text("These aliens want to take us down.");
+        Converse.say.Text("Defend humanity.");
     }
 
     public void PlayerHit()
     {
         if (!Converse.say.IsBusy())
-            Converse.say.Text("Careful! We are on your side maggot!");
+        {
+            Converse.say.Text(dialogueForPlayerAttack[dialoguePlayer++]);
+            if (dialoguePlayer == dialogueForPlayerAttack.Length)
+                dialoguePlayer = 0;
+        }
+            
         Hit();
     }
 
@@ -43,9 +61,16 @@ public class ControlTower : MonoBehaviour
         foreach(GameObject e in enemies)
             StartCoroutine(e.GetComponent<Enemy>().Swap());
 
-        float hpScale = hp.localScale.x;
+        if (hp.localScale.x == 0)
+        {
+            Debug.Log("boom");
+            return;
+        }
+        float hpScale = hp.localScale.x - .5f;
 
-        hp.localScale = new Vector3(hpScale - .5f, hp.localScale.y, hp.localScale.z);
+        hp.localScale = new Vector3(hpScale, hp.localScale.y, hp.localScale.z);
+
+
         
         StartCoroutine(HitEffect());
     }
@@ -53,7 +78,12 @@ public class ControlTower : MonoBehaviour
     public void EnemyHit()
     {
         if (!Converse.say.IsBusy())
-            Converse.say.Text("Sh&! THE SHREKS ARE IN HERE! HURRY");
+        {
+            Converse.say.Text(dialogueForEnemyEntry[dialogueEnemy++]);
+            if (dialogueEnemy == dialogueForEnemyEntry.Length)
+                dialogueEnemy = 0;
+        }
+            
         Hit();
     }
 

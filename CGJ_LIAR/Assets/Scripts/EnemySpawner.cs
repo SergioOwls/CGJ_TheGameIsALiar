@@ -16,7 +16,6 @@ public class EnemySpawner : MonoBehaviour
     private WaitForSeconds enemySpawnDelay;
     private WaitForSeconds waveCooldown;
 
-    private List<Enemy> liveEnemies = new List<Enemy>();
     private Queue<WaveConfig> waveQueue = new Queue<WaveConfig>();
 
     void Start()
@@ -52,8 +51,6 @@ public class EnemySpawner : MonoBehaviour
             enemy.transform.position = enemySpawnPointsParent.GetChild(UnityEngine.Random.Range(0, enemySpawnPointsParent.childCount)).position;
 
             enemy.Init(tower);
-
-            liveEnemies.Add(enemy);
 
             yield return enemySpawnDelay;
         }
