@@ -45,6 +45,9 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < enemiesToSpawn; i++)
         {
+            // TODO - add condition here to stop when the control tower gets destroyed
+            // if tower is not dead spawn another enemy
+
             Enemy enemy = Instantiate(enemyPrefab);
             enemy.transform.position = enemySpawnPointsParent.GetChild(UnityEngine.Random.Range(0, enemySpawnPointsParent.childCount)).position;
 
@@ -56,8 +59,6 @@ public class EnemySpawner : MonoBehaviour
         }
 
         yield return StartCoroutine(WaveCDSequence());
-        // TODO - add condition here to stop when the control tower gets destroyed
-        // if tower is not dead spawn another wave
 
         if (repeatWavesAfterDone)
             waveQueue.Enqueue(currentWave);
