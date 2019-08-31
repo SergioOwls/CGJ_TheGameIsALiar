@@ -35,7 +35,7 @@ public class CamLayout : MonoBehaviour
         image.sprite = sprites[1];
         sfx.Play();
 
-        yield return new WaitForSeconds(sfx.clip.length);
+        yield return new WaitForSeconds(2);
 
         isDisrupted = false;
         image.sprite = sprites[0];

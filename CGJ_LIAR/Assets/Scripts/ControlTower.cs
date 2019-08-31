@@ -7,12 +7,14 @@ public class ControlTower : MonoBehaviour
 {
     public static ControlTower tower;
 
+    public Sprite destroyedTower;
     public RectTransform hp;
+    public EnemySpawner spawner;
     public string[] dialogueForEnemyEntry;
     public string[] dialogueForPlayerAttack;
 
     private SpriteRenderer sprite;
-    private bool isHit;
+    private bool isHit, isDestroyed;
 
     private int dialogueEnemy, dialoguePlayer;
 
@@ -28,6 +30,7 @@ public class ControlTower : MonoBehaviour
 
         Cursor.visible = false;
         isHit = false;
+        isDestroyed = false;
 
         dialogueEnemy = 0;
         dialoguePlayer = 0;
@@ -37,6 +40,8 @@ public class ControlTower : MonoBehaviour
         Converse.say.Text("Welcome to your own baby drone.");
         Converse.say.Text("These aliens want to take us down.");
         Converse.say.Text("Defend humanity.");
+
+        StartCoroutine(WaitForIntro());
     }
 
     public void PlayerHit()
@@ -58,20 +63,39 @@ public class ControlTower : MonoBehaviour
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        foreach(GameObject e in enemies)
-            StartCoroutine(e.GetComponent<Enemy>().Swap());
-
         if (hp.localScale.x == 0)
         {
-            Debug.Log("boom");
+            if(!isDestroyed) {
+
+                Converse.say.Trash();
+
+                Converse.say.FinalText("W҉e҉ t҉r҉i҉e҉d҉ t҉e҉l҉l҉i҉n҉g҉ y҉o҉u҉");
+                Converse.say.FinalText("T҉h҉e҉y҉ m҉o҉d҉i҉f҉i҉e҉d҉ o҉u҉r҉ f҉a҉c҉e҉s҉..." +
+                                       " m҉a҉d҉e҉ u҉s҉ l҉o҉o҉k҉ l҉i҉k҉e҉ t҉h҉e҉ e҉n҉e҉m҉y҉");
+                Converse.say.FinalText("I҉t҉s҉ O҉v҉e҉r҉ N҉o҉w҉.");
+
+                sprite.sprite = destroyedTower;
+
+                foreach (GameObject e in enemies)
+                    e.GetComponent<Enemy>().End();
+
+                Music.music.FadeOut();
+
+                isDestroyed = true;
+            }
             return;
         }
+
+        if (!isDestroyed)
+        {
+            foreach (GameObject e in enemies)
+                StartCoroutine(e.GetComponent<Enemy>().Swap());
+        }
+
         float hpScale = hp.localScale.x - .5f;
 
         hp.localScale = new Vector3(hpScale, hp.localScale.y, hp.localScale.z);
 
-
-        
         StartCoroutine(HitEffect());
     }
 
@@ -98,6 +122,9 @@ public class ControlTower : MonoBehaviour
         {
             sprite.color = new Color(1, g -= 0.05f, b -= 0.05f, 1);
             yield return new WaitForSeconds(0.01f);
+
+            if (sprite.color.g <= 0)
+                sprite.color = Color.red;
         }
         
         sprite.color = Color.white;
@@ -108,4 +135,12 @@ public class ControlTower : MonoBehaviour
     {
         return isHit;
     }
+
+    private IEnumerator WaitForIntro()
+    {
+        yield return new WaitForSeconds(19);
+        spawner.enabled = true;
+    }
+
+    public bool IsDestroyed() { return isDestroyed; }
 }

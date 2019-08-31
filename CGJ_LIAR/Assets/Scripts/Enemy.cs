@@ -47,11 +47,18 @@ public class Enemy : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    public void End()
+    {
+        sr.sprite = sprites[1];
+        agent.isStopped = true;
+        
+    }
+
     public IEnumerator Swap()
     {
         sr.sprite = sprites[1];
-        yield return new WaitForSeconds(5);
-        if (sr != null)
+        yield return new WaitForSeconds(2);
+        if (sr != null && !agent.isStopped)
             sr.sprite = sprites[0];
     }
 

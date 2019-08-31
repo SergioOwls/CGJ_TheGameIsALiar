@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
-public class LoadGame : MonoBehaviour
+public class Menu : MonoBehaviour
 {
     public Image fade;
 
@@ -23,6 +23,6 @@ public class LoadGame : MonoBehaviour
             fade.color = new Color(0, 0, 0, newA += 0.05f);
             yield return new WaitForSeconds(0.1f);
         }
-        EditorSceneManager.LoadScene(1);
+        SceneManager.LoadScene(1);
     }
 }

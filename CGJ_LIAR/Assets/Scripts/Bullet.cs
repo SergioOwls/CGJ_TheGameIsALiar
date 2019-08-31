@@ -8,7 +8,6 @@ public class Bullet : MonoBehaviour
 
     private void OnParticleCollision(GameObject o)
     {
-
         if (o.CompareTag("Enemy"))
         {
             if (o.GetComponent<Enemy>().getIsHit())
