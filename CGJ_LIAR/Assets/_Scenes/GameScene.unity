@@ -280,13 +280,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 82e0cc17c2158c64eabcaddd35ded8bc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.15
+  m_Volume: 0.07
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 203
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -7495,6 +7495,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07c8b5973d13a7049aa0331e25f5e8d1, type: 2}
   - {fileID: 11400000, guid: 6428b41c0229e66438045d5d231b2a5a, type: 2}
   - {fileID: 11400000, guid: a1b5a7207ff05dc429a7778142295744, type: 2}
+  - {fileID: 11400000, guid: a1b5a7207ff05dc429a7778142295744, type: 2}
+  - {fileID: 11400000, guid: 7a1e9b93c6d8d3845b73bb239ebfe2f8, type: 2}
   alienText:
   - "t\u0489h\u0489e\u0489y\u0489  l\u0489i\u0489e\u0489"
   - "S\u0489o\u0489l\u0489d\u0489i\u0489e\u0489r\u0489 y\u0489o\u0489u\u0489 a\u0489r\u0489e\u0489
@@ -7505,7 +7507,7 @@ MonoBehaviour:
   tower: {fileID: 336751635}
   enemySpawnPointsParent: {fileID: 991488182}
   waveCooldownTime: 5
-  repeatWavesAfterDone: 0
+  repeatWavesAfterDone: 1
 --- !u!4 &948139592
 Transform:
   m_ObjectHideFlags: 0

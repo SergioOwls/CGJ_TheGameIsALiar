@@ -73,7 +73,6 @@ public class ControlTower : MonoBehaviour
                 Converse.say.FinalText("T҉h҉e҉y҉ m҉o҉d҉i҉f҉i҉e҉d҉ o҉u҉r҉ f҉a҉c҉e҉s҉..." +
                                        " m҉a҉d҉e҉ u҉s҉ l҉o҉o҉k҉ l҉i҉k҉e҉ t҉h҉e҉ e҉n҉e҉m҉y҉");
                 Converse.say.FinalText("I҉t҉s҉ O҉v҉e҉r҉ N҉o҉w҉.");
-                Converse.say.FinalText("H҉o҉p҉e҉f҉u҉l҉l҉y҉.");
 
                 sprite.sprite = destroyedTower;
 

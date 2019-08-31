@@ -13,10 +13,10 @@ public class Menu : MonoBehaviour
         Cursor.visible = true;
     }
 
-    public void FadeToScene()
-    {
-        StartCoroutine(Load());
-    }
+
+    public void EndGame() { Application.Quit(); }
+
+    public void FadeToScene() { StartCoroutine(Load()); }
 
     private IEnumerator Load()
     {
@@ -28,4 +28,5 @@ public class Menu : MonoBehaviour
         }
         SceneManager.LoadScene(1);
     }
+
 }

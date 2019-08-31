@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28dd04292d03eb34cbbff11e36eabcfc, type: 3}
-  m_Name: SemiFinalWave
+  m_Name: CrazyWave
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 9122632043582982815, guid: 5f34e3f820905fd409c0105378f9030d,
     type: 3}
-  timeBetweenSpawns: 1
-  numberOfEnemies: 25
+  timeBetweenSpawns: 0
+  numberOfEnemies: 100

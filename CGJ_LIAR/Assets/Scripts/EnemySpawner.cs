@@ -39,7 +39,7 @@ public class EnemySpawner : MonoBehaviour
         if(ControlTower.tower.IsDestroyed())
             yield break;
 
-        WaveConfig currentWave = waveQueue.Dequeue();
+        WaveConfig currentWave = waveQueue.Dequeue(); Debug.Log(currentWave);
         int enemiesToSpawn = currentWave.GetNumberOfEnemies();
         Enemy enemyPrefab = currentWave.GetEnemyPrefab();
         float timeBetweenSpawns = currentWave.GetTimeBetweenSpawns();
