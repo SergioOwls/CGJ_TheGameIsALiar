@@ -5,6 +5,7 @@ using UnityEngine;
 public class Music : MonoBehaviour
 {
     public static Music music;
+    public AudioClip endMusic;
 
     private AudioSource song;
     private WaitForSeconds fade;
@@ -30,5 +31,9 @@ public class Music : MonoBehaviour
             song.volume -= 0.03f;
             yield return fade;
         }
+        song.Stop();
+        song.volume = 0.18f;
+        song.clip = endMusic;
+        song.Play();
     }
 }

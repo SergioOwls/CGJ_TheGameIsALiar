@@ -51,7 +51,6 @@ public class Enemy : MonoBehaviour
     {
         sr.sprite = sprites[1];
         agent.isStopped = true;
-        
     }
 
     public IEnumerator Swap()

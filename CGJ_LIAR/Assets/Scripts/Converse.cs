@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Text))]
 public class Converse : MonoBehaviour
@@ -117,6 +118,9 @@ public class Converse : MonoBehaviour
             fade.color = new Color(0, 0, 0, newA += 0.05f);
             yield return new WaitForSeconds(0.1f);
         }
+
+        yield return new WaitForSeconds(4.2f);
+        SceneManager.LoadScene(0);
     }
 
     public void Trash() { sentQueue.Clear(); }

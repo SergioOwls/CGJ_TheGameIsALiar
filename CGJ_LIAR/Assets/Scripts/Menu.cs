@@ -8,6 +8,11 @@ public class Menu : MonoBehaviour
 {
     public Image fade;
 
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
+
     public void FadeToScene()
     {
         StartCoroutine(Load());
@@ -17,8 +22,6 @@ public class Menu : MonoBehaviour
     {
         while(fade.color.a < 1)
         {
-            Debug.Log(fade.color.a);
-
             float newA = fade.color.a;
             fade.color = new Color(0, 0, 0, newA += 0.05f);
             yield return new WaitForSeconds(0.1f);
