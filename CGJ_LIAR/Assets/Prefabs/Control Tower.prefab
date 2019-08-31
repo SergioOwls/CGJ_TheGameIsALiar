@@ -150,3 +150,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ea0c0077af9b3045bfdf6de1a4177b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyedTower: {fileID: 21300000, guid: 3883ed136914ec3449e21834e96f45ef, type: 3}
+  hp: {fileID: 0}
+  spawner: {fileID: 0}
+  dialogueForEnemyEntry:
+  - Sh&! THE SHREKS ARE IN HERE! HURRY
+  - AH! THEY'RE UM AH... DISRUPTING THE VIDEO FEED. IGNORE THAT.
+  - KILL THEM OR HUMANITY IS DONE!
+  dialogueForPlayerAttack:
+  - MAGGOT WE ARE ON YOUR SIDE
+  - WHAT ARE YOU DOING!!??!
+  - STOP YOU'LL WANT TO DIE?

@@ -9,8 +9,14 @@ public class DroneMovement : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed;
 
-    // Update is called once per frame
-    void Update()
+    private AudioSource sfx;
+
+    private void Start()
+    {
+        sfx = GetComponent<AudioSource>();
+    }
+
+    private void Update()
     {
         HandleInput();
     }
@@ -22,6 +28,19 @@ public class DroneMovement : MonoBehaviour
 
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = Input.GetAxis("Mouse Y");
+
+        if (h != 0 || v != 0)
+        {
+            if (!sfx.isPlaying)
+                sfx.Play();
+
+        }
+        else
+        {
+            sfx.Stop();
+        }
+
+
 
         Vector3 movementH = transform.forward * v * Time.deltaTime * movementSpeed;
         Vector3 movementV = transform.right * h * Time.deltaTime * movementSpeed;
